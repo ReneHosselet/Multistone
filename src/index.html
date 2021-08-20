@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <button id="logobutton" onClick="window.location.reload();"><img id="titleLogo"></button> -->
+    <title>Multistone</title>
+  </head>
+  <body>
+    <div class="configurator-container">
+      <!-- <div class="loading-container">
+            <p>Loading...</p>
+        </div> -->
+      <div class="type-selection-container">
+        <h1>Kies je type</h1>
+        <div class="type-list">
+          <button class="type-btn-type" data-type="Dorpel">
+            <img id="Dorpelimg" />
+            Dorpel
+          </button>
+          <button class="type-btn-type" data-type="Keukenblad">
+            <img id="Keukenbladimg" />
+            Keukenblad
+          </button>
+        </div>
+      </div>
+      <canvas class="webgl"></canvas>
+      <div class="price-container">
+        <span class="price-euro">€</span>
+        <span class="price-value">0,00</span>
+      </div>
+      <div class="interface-container">
+        <div class="hide-button pointer" id="hideButton">🡐</div>
+        <h1>Multistone Configurator</h1>
+        <img id="stepImage" />
+        <!--MODULES-->
+        <!-- dorpel subtypes -->
+        <div class="step-container" id="step1">
+          <div id="dorpelmodule">
+            <div class="step-title-container">
+              <h2>Type Dorpel</h2>
+            </div>
+            <div class="subtype-list">
+              <button class="subtype-btn-type selected" data-type="Garagedorpel">
+                <img id="GaragedorpelImg" />
+                Garagedorpel
+              </button>
+              <button class="subtype-btn-type" data-type="Deurdorpel">
+                <img id="DeurdorpelImg" />
+                Deurdorpel
+              </button>
+              <button class="subtype-btn-type" data-type="Raamdorpel">
+                <img id="RaamdorpelImg" />
+                Raamdorpel
+              </button>
+            </div>
+            <!-- sub sub type -->
+            <div class="subsubtype-title"></div>
+            <div class="subsubtype-list"></div>
+          </div>
+          <!-- keukenblad bewerkingen -->
+          <div id="keukenbladmodule">
+            <div class="step-title-container">
+              <h2>Bewerkingen</h2>
+            </div>
+            <div class="type-list">
+              <button class="WB-btn-type" data-type="WBToevoegen">Wasbak</button>
+            </div>
+            <div id="keukenbladBewerkingen">
+            </div>
+          </div>
+        </div>
+        <!--AFMETINGEN-->
+        <div class="step-container" id="step2">
+          <div class="step-title-container">
+            <h2>Basis Afmetingen</h2>
+          </div>
+          <label for="inputBreedte">Lengte (cm)</label>
+          <input
+            class="input-cm"
+            id="inputBreedte"
+            type="number"
+            value="100.0"
+            step="0.01"
+          />
+          <label for="inputHoogte">Dikte (cm)</label>
+          <input
+            class="input-cm"
+            id="inputHoogte"
+            type="number"
+            value="5.0"
+            step="0.01"
+          />
+          <label for="inputDiepte">Diepte (cm)</label>
+          <input
+            class="input-cm"
+            id="inputDiepte"
+            type="number"
+            value="20.0"
+            step="0.01"
+          />
+        </div>
+        <!--MATERIAAL EN KLEUR-->
+        <div class="step-container" id="step3">
+          <div class="step-title-container">
+            <h2>Materiaal</h2>
+          </div>
+          <div class="type-list">
+            <!-- Tab links -->
+            <div class="tab">
+              <button class="tablinks active" onclick="openTab(event, 'arduin')">
+                Arduin
+              </button>
+              <button class="tablinks" onclick="openTab(event, 'graniet')">
+                Graniet
+              </button>
+              <button class="tablinks" onclick="openTab(event, 'marmer')">
+                Marmer
+              </button>
+            </div>
+            <!-- Tab content -->
+            <div id="arduin" class="tabcontent" style = "display :flex;"></div>
+            <div id="graniet" class="tabcontent"></div>
+            <div id="marmer" class="tabcontent"></div>
+          </div>
+        </div>
+        <!--KLAAR-->
+        <div class="step-container" id="step4">
+          <div class="step-title-container">
+            <h2>Klaar!</h2>
+          </div>
+          <p class="klaar-text">
+            Je product is gereed voor bestelling! Neem gerust je tijd en kijk
+            nog even rond. Je kan steeds terugkeren naar de vorige stap om
+            wijzigingen aan te brengen.
+          </p>
+          <div class="copy-container">
+            <!-- <button class="button-copy-url pointer" id="btnCopyURL">
+              Link kopiëren
+            </button> -->
+            <input type="text" id="copyText" />
+          </div>
+        </div>
+        <div class="button-container">
+          <button class="button pointer" id="btnMainMenu">Menu</button>
+          <button class="button pointer" id="btnPrevStep">Terug</button>
+          <button class="button pointer" id="btnNextStep">Volgende stap</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      //open tab
+      function openTab(evt, tabName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tabName).style.display = "flex";
+        evt.currentTarget.className += " active";
+      }
+    </script>
+  </body>
+</html>
